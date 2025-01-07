@@ -14,6 +14,11 @@ The user will interact with the program through a command-line interface. They w
 
 Start the program as "user"
 Send messages to a specified user or group. (updates and displays last X lines of a file)
+    Edit last message if sent by self and not replied to yet????????
+Message format:
+
+[Name] | Time stamp
+<message> (one line max)
 Receive messages in real-time.
   
 # Technical Details:
