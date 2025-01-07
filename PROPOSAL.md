@@ -2,28 +2,27 @@
 
 ## Group Members:
 
-names here.
+Tiffany Yang
        
 # Intentions:
 
-A statement of the problem you are solving and/or a high level description of the project.
+Similar to the essay "game", I'd like to make sort of a texting through terminal thing. Users can send and receive messages in real-time through a command-line interface. The user will interact with the system by typing commands to send and receive messages. It will simulate a chat system that operates entirely through the terminal.
     
 # Intended usage:
 
-A description as to how the project will be used (describe the user interface).
+The user will interact with the program through a command-line interface. They will be able to:
+
+Start the program as "user"
+Send messages to a specified user or group. (updates and displays last X lines of a file)
+Receive messages in real-time.
   
 # Technical Details:
 
-A description of your technical design. This should include:
-   
-How you will be using the topics covered in class in the project.
-     
-How you are breaking down the project and who is responsible for which parts.
-  
-What data structures you will be using and how.
-     
-What algorithms and /or data structures you will be using, and how.
+Networking: client-server communication 
+Data structures: to represent users, messages, and server states. Arrays and linked lists may be used to manage messages and user data.
+Concurrency: Threading to allow multiple users to send and receive messages concurrently.
+File I/O: May store messages in log files to keep a history of conversations, which could be loaded when the program starts/'ran
     
 # Intended pacing:
 
-A timeline with expected completion dates of parts of the project.
+N/A
