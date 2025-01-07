@@ -2,7 +2,7 @@
 
 This document must be updated daily by EACH group member.
 
-## Player 1
+## Tiffany Yang
 
 ### 2024-01-06 - Proposal and readme
 Drafted proposal
