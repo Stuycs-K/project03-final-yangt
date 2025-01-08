@@ -13,3 +13,7 @@ Terminal Texting?
 
 How does the user install/compile/run the program.
 How does the user interact with this program?
+
+Sources/References:
+
+https://man7.org/linux/man-pages/man3/ncurses.3x.html
