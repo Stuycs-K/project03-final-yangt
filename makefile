@@ -2,10 +2,10 @@
 all: compile write
 
 compile:
-	@gcc -o semaphore semaphores.c semaphores.h
+	@gcc -o main main.c main.h
 
 write:
-	@./semaphore
+	@./main
 
 clean:
-	@rm -f semaphore
+	@rm -f main
