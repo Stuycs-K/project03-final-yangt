@@ -1,11 +1,11 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -g
+LIBS = -lpthread -lncurses
+TARGET = chat
+SRC = main.c
 
-all: compile write
-
-compile:
-	@gcc -o main main.c main.h
-
-write:
-	@./main
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(LIBS)
 
 clean:
-	@rm -f main
+	rm -f $(TARGET)
