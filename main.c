@@ -20,14 +20,6 @@ Client clients[MAX_CLIENTS];
 int client_count = 0;
 pthread_mutex_t clients_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-// Function declarations
-void *handle_client(void *arg);
-void broadcast_message(const char *message, int sender_socket);
-void start_server();
-void start_client(const char *name);
-void init_ui();
-void end_ui();
-void display_message(const char *message);
 
 int main(int argc, char *argv[]) {
 }
