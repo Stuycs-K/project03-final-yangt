@@ -1,43 +1,144 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <pthread.h>
-#include <ncurses.h>
 #include <unistd.h>
-#include <arpa/inet.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/sem.h>
+#include <ncurses.h>
+#include <time.h>
 
-#define PORT 8080
-#define MAX_CLIENTS 10
+#define SHM_KEY 1234
+#define SEM_KEY 5678
 #define MAX_MESSAGE_LENGTH 256
-#define MAX_NAME_LENGTH 50
+#define CHAT_LOG_FILE "chat_log.txt"
 
-typedef struct {
-    int socket;
-    char name[MAX_NAME_LENGTH];
-} Client;
-
-Client clients[MAX_CLIENTS];
-int client_count = 0;
-pthread_mutex_t clients_mutex = PTHREAD_MUTEX_INITIALIZER;
-
-
-int main(int argc, char *argv[]) {
+// Semaphore operations
+void semaphore_lock(int semid) {
+    struct sembuf op = {0, -1, 0};
+    semop(semid, &op, 1);
 }
 
-// Server functionality
-void start_server() {
-
-
-void *handle_client(void *arg) {
-
+void semaphore_unlock(int semid) {
+    struct sembuf op = {0, 1, 0};
+    semop(semid, &op, 1);
 }
 
-void broadcast_message(const char *message, int sender_socket) {
-
+// Function to append messages to the chat log
+void save_message_to_file(const char *message) {
+    FILE *file = fopen(CHAT_LOG_FILE, "a");
+    if (file == NULL) {
+        perror("Failed to open chat log file");
+        return;
+    }
+    fprintf(file, "%s\n", message);
+    fclose(file);
 }
 
-// Client functionality
-void start_client(const char *name) {
-
+// Function to load and display the chat log
+void load_chat_log() {
+    FILE *file = fopen(CHAT_LOG_FILE, "r");
+    if (file == NULL) {
+        return; // No chat log yet
+    }
+    char line[MAX_MESSAGE_LENGTH];
+    while (fgets(line, sizeof(line), file)) {
+        printw("%s", line);
+    }
+    fclose(file);
 }
 
+void init_ncurses() {
+    initscr();
+    cbreak();
+    noecho();
+    scrollok(stdscr, TRUE);
+}
+
+void cleanup_ncurses() {
+    endwin();
+}
+
+// Get a timestamp for each message
+void get_timestamp(char *buffer, size_t size) {
+    time_t now = time(NULL);
+    struct tm *t = localtime(&now);
+    strftime(buffer, size, "[%H:%M:%S]", t);
+}
+
+int main() {
+    int shm_id, sem_id;
+    char *shared_memory;
+
+    // Initialize shared memory
+    shm_id = shmget(SHM_KEY, MAX_MESSAGE_LENGTH, IPC_CREAT | 0666);
+    if (shm_id < 0) {
+        perror("shmget failed");
+        exit(EXIT_FAILURE);
+    }
+
+    shared_memory = (char *)shmat(shm_id, NULL, 0);
+    if (shared_memory == (char *)-1) {
+        perror("shmat failed");
+        exit(EXIT_FAILURE);
+    }
+
+    // Initialize semaphore
+    sem_id = semget(SEM_KEY, 1, IPC_CREAT | 0666);
+    if (sem_id < 0) {
+        perror("semget failed");
+        exit(EXIT_FAILURE);
+    }
+
+    // Initialize semaphore value to 1 (unlocked)
+    semctl(sem_id, 0, SETVAL, 1);
+
+    // Initialize ncurses
+    init_ncurses();
+
+    char input[MAX_MESSAGE_LENGTH];
+    char formatted_message[MAX_MESSAGE_LENGTH + 50]; // For timestamp + name
+
+    // Load chat history
+    load_chat_log();
+    refresh();
+
+    while (1) {
+        // Display received messages
+        semaphore_lock(sem_id);
+        if (strlen(shared_memory) > 0) {
+            printw("Received: %s\n", shared_memory);
+            save_message_to_file(shared_memory);
+            memset(shared_memory, 0, MAX_MESSAGE_LENGTH);
+        }
+        semaphore_unlock(sem_id);
+        refresh();
+
+        // Get user input
+        mvprintw(LINES - 2, 0, "You: ");
+        echo();
+        getnstr(input, MAX_MESSAGE_LENGTH);
+        noecho();
+
+        if (strcmp(input, "/quit") == 0) {
+            break;
+        }
+
+        // Add timestamp to the message
+        char timestamp[20];
+        get_timestamp(timestamp, sizeof(timestamp));
+        snprintf(formatted_message, sizeof(formatted_message), "%s You: %s", timestamp, input);
+
+        // Save and display message
+        save_message_to_file(formatted_message);
+        semaphore_lock(sem_id);
+        strncpy(shared_memory, formatted_message, MAX_MESSAGE_LENGTH);
+        semaphore_unlock(sem_id);
+    }
+
+    // Cleanup
+    cleanup_ncurses();
+    shmdt(shared_memory);
+
+    return 0;
+}
