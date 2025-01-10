@@ -7,6 +7,7 @@
 #include <sys/sem.h>
 #include <ncurses.h>
 #include <time.h>
+#include <pthread.h>
 
 #define SHM_KEY 1234
 #define SEM_KEY 5678
@@ -66,6 +67,37 @@ void get_timestamp(char *buffer, size_t size) {
     strftime(buffer, size, "[%H:%M:%S]", t);
 }
 
+// Thread to handle live updates
+void *live_update_thread(void *arg) {
+    int sem_id = *(int *)arg;
+    int shm_id = shmget(SHM_KEY, MAX_MESSAGE_LENGTH, 0666);
+    if (shm_id < 0) {
+        perror("shmget failed in live_update_thread");
+        pthread_exit(NULL);
+    }
+
+    char *shared_memory = (char *)shmat(shm_id, NULL, 0);
+    if (shared_memory == (char *)-1) {
+        perror("shmat failed in live_update_thread");
+        pthread_exit(NULL);
+    }
+
+    while (1) {
+        semaphore_lock(sem_id);
+        if (strlen(shared_memory) > 0) {
+            printw("%s\n", shared_memory);
+            save_message_to_file(shared_memory);
+            memset(shared_memory, 0, MAX_MESSAGE_LENGTH);
+            refresh();
+        }
+        semaphore_unlock(sem_id);
+        usleep(100000); // Check every 100ms
+    }
+
+    shmdt(shared_memory);
+    pthread_exit(NULL);
+}
+
 int main() {
     int shm_id, sem_id;
     char *shared_memory;
@@ -96,24 +128,18 @@ int main() {
     // Initialize ncurses
     init_ncurses();
 
-    char input[MAX_MESSAGE_LENGTH];
-    char formatted_message[MAX_MESSAGE_LENGTH + 50]; // For timestamp + name
-
     // Load chat history
     load_chat_log();
     refresh();
 
-    while (1) {
-        // Display received messages
-        semaphore_lock(sem_id);
-        if (strlen(shared_memory) > 0) {
-            printw("Received: %s\n", shared_memory);
-            save_message_to_file(shared_memory);
-            memset(shared_memory, 0, MAX_MESSAGE_LENGTH);
-        }
-        semaphore_unlock(sem_id);
-        refresh();
+    // Start live update thread
+    pthread_t update_thread;
+    pthread_create(&update_thread, NULL, live_update_thread, &sem_id);
 
+    char input[MAX_MESSAGE_LENGTH];
+    char formatted_message[MAX_MESSAGE_LENGTH + 50]; // For timestamp + name
+
+    while (1) {
         // Get user input
         mvprintw(LINES - 2, 0, "You: ");
         echo();
@@ -137,6 +163,8 @@ int main() {
     }
 
     // Cleanup
+    pthread_cancel(update_thread);
+    pthread_join(update_thread, NULL);
     cleanup_ncurses();
     shmdt(shared_memory);
 
