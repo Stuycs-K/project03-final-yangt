@@ -138,10 +138,10 @@ int main() {
 
     char input[MAX_MESSAGE_LENGTH];
     char formatted_message[MAX_MESSAGE_LENGTH + 50]; // For timestamp + name
-
+int x = rand();
     while (1) {
         // Get user input
-        mvprintw(LINES - 2, 0, "You: ");
+        mvprintw(LINES - 2, 0, "%d: ", x);
         echo();
         getnstr(input, MAX_MESSAGE_LENGTH);
         noecho();
