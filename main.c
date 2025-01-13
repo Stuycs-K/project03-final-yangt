@@ -153,7 +153,7 @@ int x = rand();
         // Add timestamp to the message
         char timestamp[20];
         get_timestamp(timestamp, sizeof(timestamp));
-        snprintf(formatted_message, sizeof(formatted_message), "%s You: %s", timestamp, input);
+        snprintf(formatted_message, sizeof(formatted_message), "%s %d: %s", timestamp, x, input);
 
         // Save and display message
         save_message_to_file(formatted_message);

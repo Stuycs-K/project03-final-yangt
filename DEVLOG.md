@@ -15,3 +15,6 @@ Did makefile and started main.c
 
 ### 2024 - 01 - 10 - I AM TRYING
 Updated main.c
+
+### 2024 - 01 - 13 - Threading
+Updated main.c + asked for pthread lib perm (which I forgot to ask for whoops)
