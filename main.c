@@ -132,7 +132,7 @@ int main() {
     refresh();
 
     // Start live update thread
-    t update_thread;
+    update_thread();
     create(&update_thread, NULL, live_update_thread, &sem_id);
 
     char input[MAX_MESSAGE_LENGTH];
