@@ -72,13 +72,13 @@ void *live_update_thread(void *arg) {
     int shm_id = shmget(SHM_KEY, MAX_MESSAGE_LENGTH, 0666);
     if (shm_id < 0) {
         perror("shmget failed in live_update_thread");
-        pthread_exit(NULL);
+        exit(NULL);
     }
 
     char *shared_memory = (char *)shmat(shm_id, NULL, 0);
     if (shared_memory == (char *)-1) {
         perror("shmat failed in live_update_thread");
-        pthread_exit(NULL);
+        exit(NULL);
     }
 
     while (1) {
@@ -94,7 +94,7 @@ void *live_update_thread(void *arg) {
     }
 
     shmdt(shared_memory);
-    pthread_exit(NULL);
+    exit(NULL);
 }
 
 int main() {
@@ -132,8 +132,8 @@ int main() {
     refresh();
 
     // Start live update thread
-    pthread_t update_thread;
-    pthread_create(&update_thread, NULL, live_update_thread, &sem_id);
+    t update_thread;
+    create(&update_thread, NULL, live_update_thread, &sem_id);
 
     char input[MAX_MESSAGE_LENGTH];
     char formatted_message[MAX_MESSAGE_LENGTH + 50]; // For timestamp + name
@@ -162,8 +162,8 @@ int x = rand();
     }
 
     // Cleanup
-    pthread_cancel(update_thread);
-    pthread_join(update_thread, NULL);
+    cancel(update_thread);
+    join(update_thread, NULL);
     cleanup_ncurses();
     shmdt(shared_memory);
 
