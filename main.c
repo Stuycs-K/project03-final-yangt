@@ -7,7 +7,6 @@
 #include <sys/sem.h>
 #include <ncurses.h>
 #include <time.h>
-#include <pthread.h>
 
 #define SHM_KEY 1234
 #define SEM_KEY 5678
