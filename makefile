@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -g
-LIBS = -lpthread -lncurses
+LIBS = -lncurses
 TARGET = chat
 SRC = main.c
 
