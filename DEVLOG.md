@@ -24,3 +24,6 @@ Removed threading
 
 ### 2024 - 01 - 15 - Forking
 Implemented what was suggested in class
+
+### 2024 - 01 - 16 Issues
+Only 60% of messages "send"
