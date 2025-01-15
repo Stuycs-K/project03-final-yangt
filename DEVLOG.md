@@ -18,3 +18,9 @@ Updated main.c
 
 ### 2024 - 01 - 13 - Threading
 Updated main.c + asked for pthread lib perm (which I forgot to ask for whoops)
+
+### 2024 - 01 - 14 - Threading
+Removed threading
+
+### 2024 - 01 - 15 - Forking
+Implemented what was suggested in class
