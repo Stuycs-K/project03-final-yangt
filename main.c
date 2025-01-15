@@ -7,6 +7,7 @@
 #include <sys/sem.h>
 #include <ncurses.h>
 #include <time.h>
+#include <signal.h>
 
 #define SHM_KEY 1234
 #define SEM_KEY 5678
@@ -66,40 +67,42 @@ void get_timestamp(char *buffer, size_t size) {
     strftime(buffer, size, "[%H:%M:%S]", t);
 }
 
-// Thread to handle live updates
-void *live_update_thread(void *arg) {
-    int sem_id = *(int *)arg;
+// Process to handle live updates
+void live_update_process(int sem_id) {
     int shm_id = shmget(SHM_KEY, MAX_MESSAGE_LENGTH, 0666);
     if (shm_id < 0) {
-        perror("shmget failed in live_update_thread");
-        exit(NULL);
+        perror("shmget failed in live_update_process");
+        exit(EXIT_FAILURE);
     }
 
     char *shared_memory = (char *)shmat(shm_id, NULL, 0);
     if (shared_memory == (char *)-1) {
-        perror("shmat failed in live_update_thread");
-        exit(NULL);
+        perror("shmat failed in live_update_process");
+        exit(EXIT_FAILURE);
     }
 
     while (1) {
         semaphore_lock(sem_id);
         if (strlen(shared_memory) > 0) {
+            // Display the message and clear shared memory
             printw("%s\n", shared_memory);
             save_message_to_file(shared_memory);
             memset(shared_memory, 0, MAX_MESSAGE_LENGTH);
             refresh();
         }
         semaphore_unlock(sem_id);
+
         usleep(100000); // Check every 100ms
     }
 
     shmdt(shared_memory);
-    exit(NULL);
+    exit(EXIT_SUCCESS);
 }
 
 int main() {
     int shm_id, sem_id;
     char *shared_memory;
+    char username[50];
 
     // Initialize shared memory
     shm_id = shmget(SHM_KEY, MAX_MESSAGE_LENGTH, IPC_CREAT | 0666);
@@ -127,20 +130,29 @@ int main() {
     // Initialize ncurses
     init_ncurses();
 
+    // Prompt for username
+    mvprintw(0, 0, "Enter your username: ");
+    echo();
+    getnstr(username, sizeof(username));
+    noecho();
+
     // Load chat history
     load_chat_log();
     refresh();
 
-    // Start live update thread
-    update_thread();
-    create(&update_thread, NULL, live_update_thread, &sem_id);
+    // Fork to handle live updates
+    pid_t pid = fork();
+    if (pid == 0) {
+        live_update_process(sem_id);
+    }
 
     char input[MAX_MESSAGE_LENGTH];
-    char formatted_message[MAX_MESSAGE_LENGTH + 50]; // For timestamp + name
-int x = rand();
+    char formatted_message[MAX_MESSAGE_LENGTH + 50]; // For timestamp + username
+
     while (1) {
         // Get user input
-        mvprintw(LINES - 2, 0, "%d: ", x);
+        mvprintw(LINES - 2, 0, "> ");
+        clrtoeol();
         echo();
         getnstr(input, MAX_MESSAGE_LENGTH);
         noecho();
@@ -149,23 +161,30 @@ int x = rand();
             break;
         }
 
-        // Add timestamp to the message
+        // Add timestamp and username to the message
         char timestamp[20];
         get_timestamp(timestamp, sizeof(timestamp));
-        snprintf(formatted_message, sizeof(formatted_message), "%s %d: %s", timestamp, x, input);
+        snprintf(formatted_message, sizeof(formatted_message), "%s %s: %s", timestamp, username, input);
 
         // Save and display message
         save_message_to_file(formatted_message);
         semaphore_lock(sem_id);
         strncpy(shared_memory, formatted_message, MAX_MESSAGE_LENGTH);
         semaphore_unlock(sem_id);
+
+        // Clear shared memory after broadcasting
+        usleep(100000); // Give clients time to read
+        semaphore_lock(sem_id);
+        memset(shared_memory, 0, MAX_MESSAGE_LENGTH);
+        semaphore_unlock(sem_id);
     }
 
     // Cleanup
-    cancel(update_thread);
-    join(update_thread, NULL);
+    kill(pid, SIGKILL); // Terminate the child process
     cleanup_ncurses();
     shmdt(shared_memory);
+    shmctl(shm_id, IPC_RMID, NULL);
+    semctl(sem_id, 0, IPC_RMID);
 
     return 0;
 }
