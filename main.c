@@ -92,7 +92,7 @@ void live_update_process(int sem_id) {
         }
         semaphore_unlock(sem_id);
 
-        usleep(100000); // Check every 100ms
+        usleep(1); // Check every 100ms
     }
 
     shmdt(shared_memory);
