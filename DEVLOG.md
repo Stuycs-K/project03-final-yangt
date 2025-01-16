@@ -27,3 +27,8 @@ Implemented what was suggested in class
 
 ### 2024 - 01 - 16 Issues
 Only 60% of messages "send"
+
+### 2024 - 01 - 17 
+Trying to find out why only some messages send/show
+Added team ID
+Fixed makefile
