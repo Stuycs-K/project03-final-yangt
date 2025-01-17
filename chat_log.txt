@@ -1,206 +1,46 @@
-[20:01:07] Hola: 
-[20:01:07] Hola: 
-[20:01:07] Hola: 
-[20:01:07] Hola: 
-[20:01:07] Hola: 
-[20:01:22] NIhonjo\: wtf
-[20:01:22] NIhonjo\: wtf
-[20:01:27] NIhonjo\: 
-[20:01:27] NIhonjo\: 
-[20:01:27] NIhonjo\: 
-[20:01:27] NIhonjo\: 
-[20:07:29] Hola: gdsfgdsfg
-[20:07:29] Hola: gdsfgdsfg
-[20:07:32] NIhonjo\: 
-[20:07:32] NIhonjo\: 
-[20:07:39] Hola: why does some work and some not
-[20:07:39] Hola: why does some work and some not
-[20:07:55] NIhonjo\: the messages are sending but not loading????
-[20:07:55] NIhonjo\: the messages are sending but not loading????
-[20:08:02] Hola: I CANT TELL IF MSGS SENT
-[20:08:02] Hola: I CANT TELL IF MSGS SENT
-[20:08:04] Hola: SOBS
-[20:08:04] Hola: SOBS
-[20:12:58] Hola: [B[B[B[B
-[20:12:58] NIhonjo\: 
-[20:12:58] Hola: [B[B[B[B
-[20:12:58] NIhonjo\: 
-[20:13:03] Hola: j
-[20:13:03] Hola: j
-[20:13:09] NIhonjo\: where my j
-[20:13:09] NIhonjo\: where my j
-[20:13:16] Hola: it shows on the other end
-[20:13:16] Hola: it shows on the other end
-[20:13:25] NIhonjo\: lol
-[20:13:25] NIhonjo\: lol
-[20:13:27] Hola: but not like here
-[20:13:27] Hola: but not like here
-[20:14:51] NIhonjo\: [B[B[B[B[B[B[B[B
-[20:14:51] NIhonjo\: [B[B[B[B[B[B[B[B
-[20:14:54] Hola: where b
-[20:14:54] Hola: where b
-[20:19:48] Hola: g
-[20:19:48] Hola: g
-[20:19:51] NIhonjo\: [B[Bl
-[20:19:51] NIhonjo\: [B[Bl
-[20:19:53] NIhonjo\: l
-[20:19:53] NIhonjo\: l
-[20:19:54] NIhonjo\: l
-[20:19:54] NIhonjo\: l
-[20:19:54] NIhonjo\: l
-[20:19:54] NIhonjo\: l
-[20:19:55] NIhonjo\: j
-[20:19:55] NIhonjo\: j
-[20:19:58] Hola: hi
-[20:19:58] Hola: hi
-[20:20:02] NIhonjo\: why 
-[20:20:02] NIhonjo\: why 
-[20:20:03] NIhonjo\: do
-[20:20:03] NIhonjo\: do
-[20:20:04] NIhonjo\: msgs
-[20:20:04] NIhonjo\: msgs
-[20:20:06] NIhonjo\: disappear
-[20:20:06] NIhonjo\: disappear
-[20:20:07] NIhonjo\: wtf
-[20:20:07] NIhonjo\: wtf
-[20:20:15] NIhonjo\: selective sending
-[20:20:15] NIhonjo\: selective sending
-[20:20:16] NIhonjo\: lmao
-[20:20:16] NIhonjo\: lmao
-[20:20:18] NIhonjo\: why
-[20:20:18] NIhonjo\: why
-[20:20:23] Hola: is only one ea allowed 
-[20:20:23] Hola: is only one ea allowed 
-[20:20:28] NIhonjo\: msgs not showing here
-[20:20:28] NIhonjo\: msgs not showing here
-[20:20:30] NIhonjo\: 1
-[20:20:30] NIhonjo\: 1
-[20:20:30] NIhonjo\: 2
-[20:20:30] NIhonjo\: 2
-[20:20:31] NIhonjo\: 3
-[20:20:31] NIhonjo\: 3
-[20:20:32] NIhonjo\: 4
-[20:20:32] NIhonjo\: 4
-[20:20:33] NIhonjo\: 56
-[20:20:33] NIhonjo\: 56
-[20:20:34] NIhonjo\: 7
-[20:20:34] NIhonjo\: 7
-[20:20:34] NIhonjo\: 8
-[20:20:34] NIhonjo\: 8
-[20:20:36] NIhonjo\: 1
-[20:20:36] NIhonjo\: 1
-[20:20:36] NIhonjo\: 2
-[20:20:36] NIhonjo\: 2
-[20:20:37] NIhonjo\: 3
-[20:20:37] NIhonjo\: 3
-[20:20:38] NIhonjo\: 4
-[20:20:38] NIhonjo\: 4
-[20:20:39] NIhonjo\: 5
-[20:20:39] NIhonjo\: 5
-[20:20:40] NIhonjo\: 6
-[20:20:40] NIhonjo\: 6
-[20:20:40] NIhonjo\: 7
-[20:20:40] NIhonjo\: 7
-[20:20:41] NIhonjo\: 8
-[20:20:41] NIhonjo\: 8
-[20:20:42] NIhonjo\: 9
-[20:20:42] NIhonjo\: 9
-[20:20:43] NIhonjo\: 10
-[20:20:43] NIhonjo\: 10
-[20:20:45] Hola: 1
-[20:20:45] Hola: 1
-[20:20:46] Hola: 2
-[20:20:46] Hola: 2
-[20:20:46] Hola: 3
-[20:20:46] Hola: 3
-[20:20:48] Hola: 4
-[20:20:48] Hola: 4
-[20:20:49] Hola: 5
-[20:20:49] Hola: 5
-[20:20:50] Hola: 6
-[20:20:50] Hola: 6
-[20:20:50] Hola: 7
-[20:20:50] Hola: 7
-[20:20:51] Hola: 8
-[20:20:51] Hola: 8
-[20:20:51] Hola: 9
-[20:20:51] Hola: 9
-[20:20:53] Hola: 10
-[20:20:53] Hola: 10
-[20:20:54] Hola: 11
-[20:20:54] Hola: 11
-[20:20:55] Hola: 12
-[20:20:55] Hola: 12
-[20:20:55] Hola: 13
-[20:20:55] Hola: 13
-[20:20:56] Hola: 14
-[20:20:56] Hola: 14
-[20:20:57] Hola: 15
-[20:20:57] Hola: 15
-[20:20:58] Hola: 16
-[20:20:58] Hola: 16
-[20:20:59] Hola: 17
-[20:20:59] Hola: 17
-[20:21:01] Hola: 18
-[20:21:01] Hola: 18
-[20:21:02] Hola: 19
-[20:21:02] Hola: 19
-[20:21:03] Hola: 20
-[20:21:03] Hola: 20
-[20:22:23] Hola: 1
-[20:22:23] Hola: 1
-[20:22:31] NIhonjo\: 2
-[20:22:31] NIhonjo\: 2
-[20:22:33] Hola: 3
-[20:22:33] Hola: 3
-[20:22:36] NIhonjo\: 4
-[20:22:36] NIhonjo\: 4
-[20:22:38] Hola: 5
-[20:22:38] Hola: 5
-[20:22:42] NIhonjo\: 6
-[20:22:42] NIhonjo\: 6
-[20:22:44] Hola: 7
-[20:22:44] Hola: 7
-[20:22:47] NIhonjo\: 8
-[20:22:47] NIhonjo\: 8
-[20:22:49] Hola: 9
-[20:22:49] Hola: 9
-test
-[20:28:06] Hola: 
-[20:28:06] Hola: 
-[20:28:07] Hola: 
-[20:28:07] Hola: 
-[20:28:16] kekw: ehyo
-[20:28:16] kekw: ehyo
-[20:28:19] kekw: 
-[20:28:19] kekw: 
-[20:28:20] kekw: 
-[20:28:20] kekw: 
-[20:28:20] kekw: 
-[20:28:20] kekw: 
-[20:28:20] kekw: 
-[20:28:20] kekw: 
-[20:28:21] kekw: 
-[20:28:21] kekw: 
-[20:28:21] kekw: 
-[20:28:21] kekw: 
-[20:28:21] kekw: 
-[20:28:21] kekw: 
-[20:28:21] kekw: 
-[20:28:21] kekw: 
-[20:28:22] kekw: 
-[20:28:22] kekw: 
-[20:28:22] kekw: 
-[20:28:22] kekw: 
-[20:28:23] kekw: 
-[20:28:23] kekw: 
-[20:28:23] kekw: 
-[20:28:23] kekw: 
-[20:28:24] kekw: 
-[20:28:24] kekw: 
-[20:28:25] kekw: 
-[20:28:25] kekw: 
-[20:28:25] kekw: 
-[20:28:25] kekw: 
-[20:28:26] kekw: 
-[20:28:26] kekw: 
+[20:26:50] a: aaa
+[20:26:50] a: aaa
+[20:26:53] b: 
+[20:26:53] b: 
+[20:26:55] a: aaa
+[20:26:55] a: aaa
+[20:26:55] a: 
+[20:26:55] a: 
+[20:26:55] a: 
+[20:26:56] a: 
+[20:26:56] a: 
+[20:26:56] a: 
+[20:26:56] a: 
+[20:26:56] a: 
+[20:26:57] a: 
+[20:26:57] a: 
+[20:26:57] a: 
+[20:26:57] a: 
+[20:26:57] a: 
+[20:26:57] a: 
+[20:26:57] a: 
+[20:26:57] a: 
+[20:26:58] a: 
+[20:26:58] a: 
+[20:26:58] a: 
+[20:26:58] a: 
+[20:26:58] a: 
+[20:26:58] a: 
+[20:26:58] a: 
+[20:26:58] a: 
+[20:26:59] a: 
+[20:26:59] a: 
+[20:26:59] a: 
+[20:27:01] a: 
+[20:27:02] a: a
+[20:27:04] a: ioaehiogfasetgkpsteroy
+[20:27:04] a: ioaehiogfasetgkpsteroy
+[20:27:07] b: dioperawur
+[20:27:07] b: dioperawur
+[20:27:09] a: /
+[20:27:14] b: it works on one end
+[20:27:17] b: nevermind
+[20:27:19] b: it doesd not
+[20:27:19] b: it doesd not
+[20:27:22] a: war-0
+[20:27:22] a: war-0

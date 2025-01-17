@@ -69,6 +69,7 @@ void get_timestamp(char *buffer, size_t size) {
 
 // Process to handle live updates
 void live_update_process(int sem_id) {
+    load_chat_log();    
     int shm_id = shmget(SHM_KEY, MAX_MESSAGE_LENGTH, 0666);
     if (shm_id < 0) {
         perror("shmget failed in live_update_process");
@@ -144,12 +145,14 @@ int main() {
     pid_t pid = fork();
     if (pid == 0) {
         live_update_process(sem_id);
+        load_chat_log();
     }
 
     char input[MAX_MESSAGE_LENGTH];
     char formatted_message[MAX_MESSAGE_LENGTH + 50]; // For timestamp + username
 
     while (1) {
+        load_chat_log();
         // Get user input
         mvprintw(LINES - 2, 0, "> ");
         clrtoeol();
@@ -173,7 +176,7 @@ int main() {
         semaphore_unlock(sem_id);
 
         // Clear shared memory after broadcasting
-        usleep(100000); // Give clients time to read
+        usleep(1); // Give clients time to read
         semaphore_lock(sem_id);
         memset(shared_memory, 0, MAX_MESSAGE_LENGTH);
         semaphore_unlock(sem_id);
